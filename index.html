@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cybersafe — Built for people who are too busy to double-check every link</title>
-<meta name="description" content="Cybersafe is an iPhone app that quietly checks the texts and sites that come your way, flags the scams, and keeps a private record — so a distracted moment doesn't turn into a real problem.">
+<title>Cybersafe | Stop scam texts and phishing sites before they reach you</title>
+<meta name="description" content="Cybersafe is an iPhone app that quietly checks the texts and sites that come your way, flags the scams, and keeps a private record of what it catches.">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap');
 
@@ -14,9 +14,9 @@
     --surface-2:#ECF1EB;
     --ink:#1E2A26;
     --muted:#5C6B65;
-    --primary:#2F6F5E;
-    --primary-dark:#1F4E42;
-    --primary-soft:#DFEEE7;
+    --primary:#2B6F82;
+    --primary-dark:#1D4E5C;
+    --primary-soft:#DCEBEE;
     --accent:#F2A65A;
     --accent-dark:#D98A3B;
     --accent-soft:#FBEAD6;
@@ -102,7 +102,7 @@
     transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
   }
   .btn-primary{background:var(--primary);color:#fff;}
-  .btn-primary:hover{transform:translateY(-1px);box-shadow:0 14px 28px -10px rgba(47,111,94,0.45);background:var(--primary-dark);}
+  .btn-primary:hover{transform:translateY(-1px);box-shadow:0 14px 28px -10px rgba(43,111,130,0.45);background:var(--primary-dark);}
   .btn-ghost{border:1.5px solid var(--line);color:var(--ink);background:var(--surface);}
   .btn-ghost:hover{border-color:var(--primary);color:var(--primary-dark);}
   .btn-accent{background:var(--accent);color:#3B2408;}
@@ -123,35 +123,19 @@
   .hero-meta{display:flex;align-items:center;gap:10px;font-size:13.5px;color:var(--muted);}
   .hero-meta svg{width:16px;height:16px;color:var(--primary);flex-shrink:0;}
 
-  /* phone mockup */
+  /* image placeholder (swap in your own app screenshot) */
   .phone-stage{display:flex;justify-content:center;position:relative;z-index:1;}
-  .phone{
-    width:290px;max-width:100%;background:#fff;border:10px solid var(--ink);
-    border-radius:40px;padding:14px 10px;box-shadow:var(--shadow-lift);
+  .image-placeholder{
+    width:290px;max-width:100%;aspect-ratio:9/17;border-radius:32px;overflow:hidden;
+    box-shadow:var(--shadow-lift);position:relative;background:var(--surface);
   }
-  .phone-notch{width:90px;height:16px;background:var(--ink);border-radius:12px;margin:0 auto 10px;}
-  .thread{background:var(--surface-2);border-radius:22px;padding:16px 12px;min-height:360px;display:flex;flex-direction:column;gap:10px;}
-  .thread-header{font-size:12px;font-weight:600;color:var(--muted);text-align:center;padding-bottom:10px;border-bottom:1px solid var(--line);margin-bottom:2px;}
-  .bubble{
-    max-width:88%;padding:11px 14px;border-radius:18px;font-size:13.5px;line-height:1.5;
-    background:#fff;color:var(--ink);align-self:flex-start;border-bottom-left-radius:5px;
-    box-shadow:0 4px 14px -8px rgba(30,42,38,0.2);
+  .image-placeholder img{width:100%;height:100%;object-fit:cover;display:block;}
+  .placeholder-fallback{
+    position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;
+    background:var(--surface-2);border:2px dashed var(--line);color:var(--muted);text-align:center;padding:24px;
   }
-  .bubble.spoof{border:1.5px solid var(--alert-soft);}
-  .flag-banner{
-    align-self:flex-start;display:flex;align-items:center;gap:8px;
-    background:var(--alert-soft);color:#A8412D;
-    font-size:12.5px;font-weight:600;padding:9px 13px;border-radius:var(--r-pill);
-    opacity:0;transform:translateY(-6px);transition:all .5s ease;
-  }
-  .flag-banner.show{opacity:1;transform:translateY(0);}
-  .flag-banner svg{width:14px;height:14px;flex-shrink:0;}
-  .log-confirm{
-    align-self:flex-start;display:flex;align-items:center;gap:7px;
-    font-size:12px;font-weight:600;color:var(--primary-dark);
-    opacity:0;transition:opacity .5s ease .3s;
-  }
-  .log-confirm.show{opacity:1;}
+  .placeholder-fallback svg{width:36px;height:36px;color:var(--primary);}
+  .placeholder-fallback span{font-size:13.5px;font-weight:500;max-width:190px;line-height:1.5;}
 
   /* ---------- WHAT IS PHISHING ---------- */
   .basics{padding:110px 0 90px;}
@@ -266,7 +250,6 @@
   .waitlist-status{margin-top:18px;font-size:13.5px;font-weight:500;min-height:18px;}
   .waitlist-status.ok{color:#D9F2E8;}
   .waitlist-status.err{color:#FFD9CF;}
-  .waitlist-count{margin-top:22px;font-size:12.5px;color:rgba(255,255,255,0.7);}
 
   /* ---------- FAQ ---------- */
   .faq{padding:104px 0 112px;}
@@ -328,8 +311,7 @@
     <div class="blob blob-b"></div>
     <div class="wrap hero-grid">
       <div>
-        <span class="eyebrow"><span class="dot"></span>Coming soon to iPhone</span>
-        <h1>Scams count on you<br>being <em>busy</em>. We're not.</h1>
+        <h1>Stop scam texts and phishing sites <em>before</em> they reach you.</h1>
         <p class="lead">Between texts, emails, and a dozen open tabs, nobody has time to scrutinize every link. Cybersafe quietly checks the ones that matter, so a distracted moment doesn't turn into a real problem.</p>
         <div class="hero-actions">
           <a href="#waitlist" class="btn btn-primary">Join the Waitlist</a>
@@ -337,26 +319,17 @@
         </div>
         <div class="hero-meta">
           <svg viewBox="0 0 24 24" fill="none"><path d="M4 12l6 6L20 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Built for iPhone. No account needed to report a scam.
+          Built for iPhone.
         </div>
       </div>
 
       <div class="phone-stage">
-        <div class="phone">
-          <div class="phone-notch"></div>
-          <div class="thread">
-            <div class="thread-header">Messages · Unknown Sender</div>
-            <div class="bubble spoof" id="scamBubble">
-              USPS: Your package has a $2.99 redelivery fee. Confirm within 24 hrs or it will be returned: usps-redelivery-check.info
-            </div>
-            <div class="flag-banner" id="flagBanner">
-              <svg viewBox="0 0 24 24" fill="none"><path d="M12 9v4m0 4h.01M10.3 3.9L2.7 17a2 2 0 001.7 3h15.2a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Flagged as phishing — link blocked
-            </div>
-            <div class="log-confirm" id="logConfirm">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M4 12l6 6L20 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Saved to your Scam Log
-            </div>
+        <div class="image-placeholder">
+          <!-- Swap the src below for your own app screenshot -->
+          <img src="" alt="Cybersafe app screenshot" onerror="this.style.display='none'">
+          <div class="placeholder-fallback">
+            <svg viewBox="0 0 24 24" fill="none"><rect x="4" y="3" width="16" height="18" rx="2.5" stroke="currentColor" stroke-width="1.6"/><path d="M9 20h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            <span>Add your app screenshot here</span>
           </div>
         </div>
       </div>
@@ -369,7 +342,7 @@
       <div class="basics-top">
         <span class="eyebrow warn"><span class="dot"></span>The basics</span>
         <h2>Phishing is a con, not a hack.</h2>
-        <p>Phishing isn't about breaking through your phone's security — it's about catching you in a busy moment. A message that looks like it's from your bank, a delivery service, or a coworker, arriving right when you're distracted, is often all it takes. It works because of timing and trust, not because you weren't careful enough.</p>
+        <p>Phishing isn't about breaking through your phone's security. It's about catching you in a busy moment. A message that looks like it's from your bank, a delivery service, or a coworker, arriving right when you're distracted, is often all it takes. It works because of timing and trust, not because you weren't careful enough.</p>
       </div>
 
       <div class="basics-cards">
@@ -378,7 +351,7 @@
             <svg viewBox="0 0 24 24" fill="none"><path d="M4 5h16v14H4z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M4 6l8 7 8-7" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
           </div>
           <h3>Text phishing (smishing)</h3>
-          <p>A text arrives that looks like it's from a delivery company, your bank, or even a family member — usually while you're mid-scroll, driving, or in the middle of something else. It creates urgency and pushes you toward a link that leads to a fake page built to collect your information.</p>
+          <p>A text arrives that looks like it's from a delivery company, your bank, or even a family member, usually while you're mid-scroll, driving, or in the middle of something else. It creates urgency and pushes you toward a link that leads to a fake page built to collect your information.</p>
           <span class="tag">SMS · iMessage</span>
         </div>
         <div class="basic-card">
@@ -386,8 +359,8 @@
             <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18" stroke="currentColor" stroke-width="1.7"/></svg>
           </div>
           <h3>Website & deepfake phishing</h3>
-          <p>A cloned website can look identical to your bank's real login page. Increasingly, attackers go further with deepfake audio or video — a synthetic "support agent" or even a familiar voice — built to earn your trust in the few seconds you have to decide.</p>
-          <span class="tag">Web · Video · Voice</span>
+          <p>A cloned website can look identical to your bank's real login page. Increasingly, attackers go further with a deepfake video embedded on the fake site, a synthetic "support agent" built to earn your trust in the few seconds you have to decide.</p>
+          <span class="tag">Web · Video</span>
         </div>
       </div>
     </div>
@@ -398,27 +371,27 @@
     <div class="wrap">
       <div class="sequence-head">
         <h3>How a phishing text plays out</h3>
-        <p>The same four moves show up in almost every smishing attempt — Cybersafe is built to interrupt them at step three, before any information leaves your phone.</p>
+        <p>The same four moves show up in almost every smishing attempt. Cybersafe is built to interrupt them at step three, before any information leaves your phone.</p>
       </div>
       <div class="sequence">
         <div class="seq-step">
           <div class="seq-badge">01</div>
-          <h4>The lure</h4>
+          <h4>The message</h4>
           <p>A spoofed message arrives, faked to look like a delivery service, bank, or contact you recognize.</p>
         </div>
         <div class="seq-step">
           <div class="seq-badge">02</div>
-          <h4>The hook</h4>
-          <p>Urgent language — "act now," "account locked," "package held" — designed to make you act fast, before you've had a moment to think it through.</p>
+          <h4>The pressure</h4>
+          <p>Urgent language, like "act now," "account locked," or "package held," designed to make you act fast, before you've had a moment to think it through.</p>
         </div>
         <div class="seq-step">
           <div class="seq-badge">03</div>
-          <h4>The line</h4>
+          <h4>The link</h4>
           <p>A link leads to a page built to look like the real thing, often live for only a few hours.</p>
         </div>
         <div class="seq-step">
           <div class="seq-badge">04</div>
-          <h4>The catch</h4>
+          <h4>The result</h4>
           <p>Login details, card numbers, or personal data entered on the fake page go straight to the attacker.</p>
         </div>
       </div>
@@ -436,22 +409,22 @@
         <div class="seq-step">
           <div class="seq-badge">01</div>
           <h4>The setup</h4>
-          <p>A cloned login page, or a synthetic voice or video trained to sound and look like someone real.</p>
+          <p>A cloned login page, or a deepfake video on a fake site made to look and sound like someone real.</p>
         </div>
         <div class="seq-step">
           <div class="seq-badge">02</div>
           <h4>The approach</h4>
-          <p>You're directed there through a text link, a search ad, a social DM, or an unexpected call.</p>
+          <p>You're directed there through a text link, a search ad, or a social media message.</p>
         </div>
         <div class="seq-step">
           <div class="seq-badge">03</div>
           <h4>The mask</h4>
-          <p>Familiar branding, a real logo, or a voice that matches someone you already trust.</p>
+          <p>Familiar branding, a real logo, or a deepfake video that matches someone you already trust.</p>
         </div>
         <div class="seq-step">
           <div class="seq-badge">04</div>
-          <h4>The extraction</h4>
-          <p>A form, a "verification" code, or a payment request — the actual goal behind the disguise.</p>
+          <h4>The ask</h4>
+          <p>A form, a "verification" code, or a payment request. This is the real goal behind the disguise.</p>
         </div>
       </div>
     </div>
@@ -462,8 +435,8 @@
     <div class="wrap">
       <div class="features-top">
         <span class="eyebrow"><span class="dot"></span>What Cybersafe does</span>
-        <h2>Everything you catch, kept in one place.</h2>
-        <p>Cybersafe watches for the two most common phishing paths on iPhone — texts and websites — and gives you a private history of everything it flags.</p>
+        <h2>We catch the scams, so you don't have to.</h2>
+        <p>Cybersafe watches the two most common phishing paths on iPhone, texts and websites, and gives you a private history of everything it flags.</p>
       </div>
       <div class="feature-grid">
         <div class="feature-card">
@@ -484,15 +457,15 @@
           <div class="icon-wrap">
             <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M9 10c0-1 .8-2 3-2s3 1 3 2-1 1.5-2 2-1 1-1 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="12" cy="17" r=".6" fill="currentColor"/></svg>
           </div>
-          <h3>Deepfake site & call detection</h3>
-          <p>Cloned login pages and synthetic video or voice impersonation are flagged before you're asked to hand anything over.</p>
+          <h3>Deepfake site detection</h3>
+          <p>Cloned login pages and deepfake video used to impersonate real brands or people are flagged before you're asked to hand anything over.</p>
         </div>
         <div class="feature-card">
           <div class="icon-wrap">
             <svg viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="6" rx="7" ry="3" stroke="currentColor" stroke-width="1.7"/><path d="M5 6v6c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6" stroke="currentColor" stroke-width="1.7"/></svg>
           </div>
           <h3>Centralized report database</h3>
-          <p>Every scam Cybersafe catches — text or website — lands in one searchable history, kept privately on your phone.</p>
+          <p>Every scam Cybersafe catches, text or website, lands in one searchable history, kept privately on your phone.</p>
         </div>
       </div>
     </div>
@@ -504,8 +477,7 @@
       <div class="log-copy">
         <span class="eyebrow warn"><span class="dot"></span>Your scam log</span>
         <h2>A running record, not a one-tap dismissal.</h2>
-        <p>Nobody has time to write down every scam text they get — most just get swiped away and forgotten. Cybersafe keeps a private timeline instead — every reported text and blocked site, searchable later, on your device only.</p>
-        <p>Nothing here leaves your phone unless you choose to share it.</p>
+        <p>Cybersafe keeps a private timeline of every reported text and blocked site, searchable later, on your device only.</p>
         <div class="note">Preview below uses sample entries to show the layout of your Scam Log.</div>
       </div>
       <div class="log-panel">
@@ -522,13 +494,12 @@
     <div class="wrap waitlist-box">
       <span class="eyebrow"><span class="dot"></span>Coming to iPhone</span>
       <h2>Get Cybersafe when it launches.</h2>
-      <p>Join the waitlist for early access. No spam — just one email when the app is ready.</p>
+      <p>Join the waitlist for early access. No spam, just one email when the app is ready.</p>
       <form class="waitlist-form" id="waitlistForm" novalidate>
         <input type="email" id="waitlistEmail" placeholder="you@example.com" autocomplete="email" required aria-label="Email address">
         <button type="submit" class="btn btn-accent" id="waitlistBtn">Join the Waitlist</button>
       </form>
       <div class="waitlist-status" id="waitlistStatus" role="status"></div>
-      <div class="waitlist-count" id="waitlistCount">2,483 people already on the list</div>
     </div>
   </section>
 
@@ -546,19 +517,11 @@
         </details>
         <details>
           <summary>Will Cybersafe work on Android?<span class="plus">+</span></summary>
-          <p>Cybersafe is launching on iPhone first. An Android version may follow after launch — the waitlist is the best way to hear about it.</p>
+          <p>Cybersafe is launching on iPhone first. An Android version may follow after launch. The waitlist is the best way to hear about it.</p>
         </details>
         <details>
           <summary>Does Cybersafe read all of my messages?<span class="plus">+</span></summary>
           <p>Cybersafe scans message content and links on your device to check for phishing indicators like spoofed senders and known malicious domains. Anything you report is saved to your personal Scam Log, not shared elsewhere.</p>
-        </details>
-        <details>
-          <summary>What counts as a "phishing website"?<span class="plus">+</span></summary>
-          <p>Any site built to impersonate a real service, usually a login page, payment form, or delivery tracker, in order to collect credentials, card details, or personal information under false pretenses.</p>
-        </details>
-        <details>
-          <summary>What's a deepfake website, exactly?<span class="plus">+</span></summary>
-          <p>A site or call that uses synthetic video, audio, or a real person's likeness to impersonate someone trustworthy, such as a bank representative or a familiar voice, in order to make a scam request more convincing.</p>
         </details>
       </div>
     </div>
@@ -575,7 +538,7 @@
         </span>
         Cybersafe
       </a>
-      <div class="footer-fine">© 2026 Cybersafe. Pre-launch — iPhone only.</div>
+      <div class="footer-fine">© 2026 Cybersafe. Pre-launch, iPhone only.</div>
     </div>
     <ul class="footer-links">
       <li><a href="#basics">How it works</a></li>
@@ -587,20 +550,14 @@
 </footer>
 
 <script>
-  // ---------- Hero flag animation ----------
-  window.addEventListener('DOMContentLoaded', () => {
-    setTimeout(() => document.getElementById('flagBanner').classList.add('show'), 900);
-    setTimeout(() => document.getElementById('logConfirm').classList.add('show'), 1500);
-  });
-
   // ---------- Scam log preview ticker ----------
   const sampleEntries = [
     { type: 'text', title: 'Spoofed "USPS" delivery fee text', meta: 'Today · 9:41 AM' },
-    { type: 'web', title: 'Cloned login page — chase-secure-verify.com', meta: 'Today · 8:12 AM' },
+    { type: 'web', title: 'Cloned login page: chase-secure-verify.com', meta: 'Today · 8:12 AM' },
     { type: 'text', title: '"Bank alert" text with urgent link', meta: 'Yesterday · 6:03 PM' },
-    { type: 'web', title: 'Synthetic voice call impersonating support', meta: 'Yesterday · 2:47 PM' },
+    { type: 'web', title: 'Deepfake video on a fake support page', meta: 'Yesterday · 2:47 PM' },
     { type: 'text', title: 'Fake gift card request from "coworker"', meta: '2 days ago · 11:15 AM' },
-    { type: 'web', title: 'Lookalike domain — paypa1-account.net', meta: '3 days ago · 4:30 PM' },
+    { type: 'web', title: 'Lookalike domain: paypa1-account.net', meta: '3 days ago · 4:30 PM' },
     { type: 'text', title: '"Toll payment overdue" smishing text', meta: '4 days ago · 7:52 AM' },
   ];
 
@@ -643,8 +600,6 @@
   const emailInput = document.getElementById('waitlistEmail');
   const statusEl = document.getElementById('waitlistStatus');
   const btn = document.getElementById('waitlistBtn');
-  const countEl = document.getElementById('waitlistCount');
-  let joined = 2483;
 
   function isValidEmail(value) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
@@ -664,11 +619,9 @@
     btn.textContent = 'Joining…';
 
     setTimeout(() => {
-      statusEl.textContent = "You're on the list — we'll email you when Cybersafe launches.";
+      statusEl.textContent = "You're on the list. We'll email you when Cybersafe launches.";
       statusEl.className = 'waitlist-status ok';
       btn.textContent = 'Joined ✓';
-      joined += 1;
-      countEl.textContent = joined.toLocaleString() + ' people already on the list';
       emailInput.value = '';
       emailInput.disabled = true;
     }, 600);
