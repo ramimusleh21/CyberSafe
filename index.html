@@ -261,6 +261,13 @@
   details[open] .plus{transform:rotate(45deg);}
   details p{margin-top:14px;font-size:14.5px;line-height:1.75;color:var(--muted);max-width:640px;}
 
+  .video-frame video {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+}
+  
   /* ---------- FOOTER ---------- */
   footer{background:var(--surface-2);padding:48px 0;}
   .footer-inner{display:flex;flex-direction:column;gap:20px;justify-content:space-between;align-items:flex-start;}
