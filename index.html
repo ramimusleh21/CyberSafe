@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cybersafe | Stop scam texts and phishing sites before they reach you</title>
-<meta name="description" content="Cybersafe is an iPhone app that quietly checks the texts and sites that come your way, flags the scams, and keeps a private record of what it catches.">
+<title>Cybersafe | Know it's a scam before it fools you</title>
+<meta name="description" content="Cybersafe is an iPhone app that checks the texts and sites that come your way and flags anything that looks like a scam, so a distracted moment doesn't turn into a real problem.">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap');
 
@@ -109,29 +109,34 @@
   .btn-accent:hover{background:var(--accent-dark);transform:translateY(-1px);box-shadow:0 14px 28px -10px rgba(217,138,59,0.5);}
   .nav-cta{display:none;}
   @media(min-width:720px){.nav-cta{display:inline-flex;}}
+  .back-link{display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:600;color:var(--muted);margin-bottom:24px;}
+  .back-link:hover{color:var(--primary-dark);}
 
   /* ---------- HERO ---------- */
-  .hero{padding:96px 0 90px;overflow:hidden;position:relative;}
+  .hero{padding:88px 0 80px;overflow:hidden;position:relative;}
   .hero .blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:0.55;z-index:0;}
   .hero .blob-a{width:420px;height:420px;background:var(--primary-soft);top:-140px;right:-80px;}
   .hero .blob-b{width:280px;height:280px;background:var(--accent-soft);bottom:-100px;left:-60px;}
-  .hero-grid{display:grid;grid-template-columns:1fr;gap:56px;align-items:center;position:relative;z-index:1;}
-  @media(min-width:900px){.hero-grid{grid-template-columns:1.05fr 0.95fr;}}
-  .hero h1{font-size:clamp(36px,5vw,56px);margin-bottom:22px;font-weight:600;}
-  .hero p.lead{font-size:17.5px;line-height:1.65;color:var(--muted);max-width:480px;margin-bottom:34px;}
-  .hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:30px;}
-  .hero-meta{display:flex;align-items:center;gap:10px;font-size:13.5px;color:var(--muted);}
+  .hero-inner{max-width:680px;margin:0 auto;text-align:center;position:relative;z-index:1;}
+  .hero h1{font-size:clamp(34px,5vw,54px);margin-bottom:20px;font-weight:600;}
+  .hero p.lead{font-size:17px;line-height:1.65;color:var(--muted);max-width:560px;margin:0 auto 32px;}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-bottom:26px;}
+  .hero-meta{display:flex;align-items:center;justify-content:center;gap:10px;font-size:13.5px;color:var(--muted);}
   .hero-meta svg{width:16px;height:16px;color:var(--primary);flex-shrink:0;}
 
-  /* image placeholder (swap in your own app screenshot) */
-  .phone-stage{display:flex;justify-content:center;position:relative;z-index:1;}
-  .image-placeholder img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
+  .hero-media-wrap{margin-top:52px;position:relative;z-index:1;}
+  .hero-media{
+    width:100%;max-width:860px;margin:0 auto;aspect-ratio:16/9;border-radius:28px;overflow:hidden;
+    box-shadow:var(--shadow-lift);position:relative;background:var(--surface-2);
+  }
+  .hero-media img{width:100%;height:100%;object-fit:contain;display:block;}
+
+  /* image placeholder (swap in your own screenshots) */
+  .image-placeholder{
+    width:290px;max-width:100%;min-height:200px;border-radius:32px;overflow:hidden;
     box-shadow:var(--shadow-lift);position:relative;background:var(--surface);
   }
-  .image-placeholder img{width:100%;height:100%;object-fit:cover;display:block;}
+  .image-placeholder img{width:100%;height:auto;display:block;}
   .placeholder-fallback{
     position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;
     background:var(--surface-2);border:2px dashed var(--line);color:var(--muted);text-align:center;padding:24px;
@@ -139,10 +144,10 @@
   .placeholder-fallback svg{width:36px;height:36px;color:var(--primary);}
   .placeholder-fallback span{font-size:13.5px;font-weight:500;max-width:190px;line-height:1.5;}
 
-  /* ---------- WHAT IS PHISHING ---------- */
+  /* ---------- WHAT IS PHISHING (used on phishing.html) ---------- */
   .basics{padding:110px 0 90px;}
   .basics-top{max-width:640px;margin-bottom:56px;}
-  .basics-top h2{font-size:clamp(28px,3.6vw,40px);margin-bottom:18px;}
+  .basics-top h1,.basics-top h2{font-size:clamp(28px,3.6vw,40px);margin-bottom:18px;}
   .basics-top p{font-size:16.5px;line-height:1.75;color:var(--muted);}
   .basics-cards{display:grid;grid-template-columns:1fr;gap:22px;}
   @media(min-width:760px){.basics-cards{grid-template-columns:1fr 1fr;}}
@@ -161,7 +166,7 @@
     color:var(--muted);border:1px solid var(--line);padding:5px 12px;border-radius:var(--r-pill);
   }
 
-  /* ---------- SEQUENCE (how it works) ---------- */
+  /* ---------- SEQUENCE (how it works, used on phishing.html) ---------- */
   .sequence-section{padding:70px 0;}
   .sequence-head{display:flex;flex-direction:column;gap:8px;margin-bottom:44px;max-width:600px;}
   .sequence-head h3{font-size:24px;}
@@ -199,40 +204,15 @@
   .feature-card h3{font-size:18px;margin-bottom:10px;}
   .feature-card p{font-size:14.5px;line-height:1.7;color:var(--muted);}
 
-  /* ---------- SCAM LOG PREVIEW (signature) ---------- */
-  .logsection{padding:100px 0;}
-  .log-grid{display:grid;grid-template-columns:1fr;gap:48px;align-items:center;}
-  @media(min-width:900px){.log-grid{grid-template-columns:0.95fr 1.05fr;}}
-  .log-copy h2{font-size:clamp(27px,3.4vw,36px);margin-bottom:16px;}
-  .log-copy p{font-size:15.5px;line-height:1.75;color:var(--muted);margin-bottom:14px;max-width:460px;}
-  .log-copy .note{
-    font-size:13px;color:var(--muted);font-style:italic;
-    border-left:2px solid var(--primary-soft);padding-left:14px;margin-top:22px;
-  }
-  .log-panel{background:var(--surface);border-radius:var(--r-lg);padding:22px;box-shadow:var(--shadow-lift);}
-  .log-panel-head{
-    display:flex;align-items:center;justify-content:space-between;
-    font-size:12.5px;font-weight:600;color:var(--muted);
-    padding-bottom:14px;margin-bottom:14px;border-bottom:1px solid var(--line);
-  }
-  .log-list{display:flex;flex-direction:column;gap:10px;min-height:280px;}
-  .log-entry{
-    display:flex;gap:13px;align-items:flex-start;background:var(--bg);border-radius:var(--r-md);
-    padding:13px 14px;animation:slideIn .5s ease;
-  }
-  @keyframes slideIn{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
-  .log-entry .icon-dot{
-    width:30px;height:30px;border-radius:50%;background:var(--alert-soft);
-    display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;
-  }
-  .log-entry.web .icon-dot{background:var(--accent-soft);}
-  .log-entry .icon-dot svg{width:14px;height:14px;color:var(--alert);}
-  .log-entry.web .icon-dot svg{color:var(--accent-dark);}
-  .log-entry-body{flex:1;min-width:0;}
-  .log-entry-title{font-size:13.5px;font-weight:500;color:var(--ink);margin-bottom:2px;}
-  .log-entry-meta{font-size:11.5px;color:var(--muted);}
+  /* ---------- TRENDING SCAMS ---------- */
+  .trending{padding:100px 0;}
+  .trending-grid{display:grid;grid-template-columns:1fr;gap:48px;align-items:center;}
+  @media(min-width:900px){.trending-grid{grid-template-columns:1.05fr 0.95fr;}}
+  .trending-copy h2{font-size:clamp(27px,3.4vw,36px);margin-bottom:16px;}
+  .trending-copy p{font-size:15.5px;line-height:1.75;color:var(--muted);margin-bottom:14px;max-width:460px;}
+  .trending-media{display:flex;justify-content:center;}
 
-  /* ---------- WAITLIST ---------- */
+  /* ---------- WAITLIST / CTA BAND ---------- */
   .waitlist{padding:110px 0;background:var(--primary);color:#fff;position:relative;overflow:hidden;}
   .waitlist .blob{position:absolute;border-radius:50%;filter:blur(70px);opacity:0.35;}
   .waitlist .blob-a{width:380px;height:380px;background:var(--accent);top:-160px;left:-100px;}
@@ -297,8 +277,9 @@
       Cybersafe
     </a>
     <ul class="nav-links">
-      <li><a href="#basics">How it works</a></li>
+      <li><a href="phishing.html">How Phishing Works</a></li>
       <li><a href="#features">Features</a></li>
+      <li><a href="#trending">Trending Scams</a></li>
       <li><a href="#faq">FAQ</a></li>
     </ul>
     <a href="#waitlist" class="btn btn-primary nav-cta">Join the Waitlist</a>
@@ -307,125 +288,31 @@
 
 <main id="top">
 
-<!-- HERO -->
+  <!-- HERO -->
   <section class="hero">
     <div class="blob blob-a"></div>
     <div class="blob blob-b"></div>
-    <div class="wrap hero-grid">
-      <div>
-        <h1>Stop scam texts and phishing sites <em>before</em> they reach you.</h1>
-        <p class="lead">Between texts, emails, and a dozen open tabs, nobody has time to scrutinize every link. Cybersafe quietly checks the ones that matter, so a distracted moment doesn't turn into a real problem.</p>
+    <div class="wrap">
+      <div class="hero-inner">
+        <h1>Know it's a scam <em>before</em> it fools you.</h1>
+        <p class="lead">Between texts, emails, and a dozen open tabs, nobody has time to scrutinize every link. Cybersafe checks the ones that matter and flags anything that looks like a scam, so a distracted moment doesn't turn into a real problem.</p>
         <div class="hero-actions">
           <a href="#waitlist" class="btn btn-primary">Join the Waitlist</a>
-          <a href="#basics" class="btn btn-ghost">See how phishing works</a>
+          <a href="phishing.html" class="btn btn-ghost">See how phishing works</a>
         </div>
         <div class="hero-meta">
           <svg viewBox="0 0 24 24" fill="none"><path d="M4 12l6 6L20 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
           Built for iPhone.
         </div>
       </div>
- 
-      <div class="phone-stage">
-        <div class="image-placeholder">
-          <img src="https://ramimusleh21.github.io/CyberSafe/AppScreenshot.png" alt="Cybersafe app screenshot" onload="this.nextElementSibling.style.display='none'" onerror="this.style.display='none'">
+
+      <div class="hero-media-wrap">
+        <div class="hero-media">
+          <img src="" alt="Cybersafe app demo" onload="this.nextElementSibling.style.display='none'" onerror="this.style.display='none'">
           <div class="placeholder-fallback">
-            <svg viewBox="0 0 24 24" fill="none"><rect x="4" y="3" width="16" height="18" rx="2.5" stroke="currentColor" stroke-width="1.6"/><path d="M9 20h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-            <span>Add your app screenshot here</span>
+            <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2.5" stroke="currentColor" stroke-width="1.6"/><path d="M9 9l6 3-6 3V9z" fill="currentColor" stroke="none"/></svg>
+            <span>Add your product demo GIF here (16:9)</span>
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- WHAT IS PHISHING -->
-  <section class="basics" id="basics">
-    <div class="wrap">
-      <div class="basics-top">
-        <span class="eyebrow warn"><span class="dot"></span>The basics</span>
-        <h2>Phishing is a con, not a hack.</h2>
-        <p>Phishing isn't about breaking through your phone's security. It's about catching you in a busy moment. A message that looks like it's from your bank, a delivery service, or a coworker, arriving right when you're distracted, is often all it takes. It works because of timing and trust, not because you weren't careful enough.</p>
-      </div>
-
-      <div class="basics-cards">
-        <div class="basic-card">
-          <div class="icon-wrap">
-            <svg viewBox="0 0 24 24" fill="none"><path d="M4 5h16v14H4z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M4 6l8 7 8-7" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
-          </div>
-          <h3>Text phishing (smishing)</h3>
-          <p>A text arrives that looks like it's from a delivery company, your bank, or even a family member, usually while you're mid-scroll, driving, or in the middle of something else. It creates urgency and pushes you toward a link that leads to a fake page built to collect your information.</p>
-          <span class="tag">SMS · iMessage</span>
-        </div>
-        <div class="basic-card">
-          <div class="icon-wrap">
-            <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18" stroke="currentColor" stroke-width="1.7"/></svg>
-          </div>
-          <h3>Website & deepfake phishing</h3>
-          <p>A cloned website can look identical to your bank's real login page. Increasingly, attackers go further with a deepfake video embedded on the fake site, a synthetic "support agent" built to earn your trust in the few seconds you have to decide.</p>
-          <span class="tag">Web · Video</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SEQUENCE: TEXT -->
-  <section class="sequence-section">
-    <div class="wrap">
-      <div class="sequence-head">
-        <h3>How a phishing text plays out</h3>
-        <p>The same four moves show up in almost every smishing attempt. Cybersafe is built to interrupt them at step three, before any information leaves your phone.</p>
-      </div>
-      <div class="sequence">
-        <div class="seq-step">
-          <div class="seq-badge">01</div>
-          <h4>The message</h4>
-          <p>A spoofed message arrives, faked to look like a delivery service, bank, or contact you recognize.</p>
-        </div>
-        <div class="seq-step">
-          <div class="seq-badge">02</div>
-          <h4>The pressure</h4>
-          <p>Urgent language, like "act now," "account locked," or "package held," designed to make you act fast, before you've had a moment to think it through.</p>
-        </div>
-        <div class="seq-step">
-          <div class="seq-badge">03</div>
-          <h4>The link</h4>
-          <p>A link leads to a page built to look like the real thing, often live for only a few hours.</p>
-        </div>
-        <div class="seq-step">
-          <div class="seq-badge">04</div>
-          <h4>The result</h4>
-          <p>Login details, card numbers, or personal data entered on the fake page go straight to the attacker.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SEQUENCE: WEBSITE / DEEPFAKE -->
-  <section class="sequence-section">
-    <div class="wrap">
-      <div class="sequence-head">
-        <h3>How a phishing website or deepfake plays out</h3>
-        <p>Website and deepfake phishing follow a similar arc, but lean on visual and vocal trust instead of just text.</p>
-      </div>
-      <div class="sequence">
-        <div class="seq-step">
-          <div class="seq-badge">01</div>
-          <h4>The setup</h4>
-          <p>A cloned login page, or a deepfake video on a fake site made to look and sound like someone real.</p>
-        </div>
-        <div class="seq-step">
-          <div class="seq-badge">02</div>
-          <h4>The approach</h4>
-          <p>You're directed there through a text link, a search ad, or a social media message.</p>
-        </div>
-        <div class="seq-step">
-          <div class="seq-badge">03</div>
-          <h4>The mask</h4>
-          <p>Familiar branding, a real logo, or a deepfake video that matches someone you already trust.</p>
-        </div>
-        <div class="seq-step">
-          <div class="seq-badge">04</div>
-          <h4>The ask</h4>
-          <p>A form, a "verification" code, or a payment request. This is the real goal behind the disguise.</p>
         </div>
       </div>
     </div>
@@ -452,7 +339,7 @@
             <svg viewBox="0 0 24 24" fill="none"><rect x="4" y="10" width="16" height="10" rx="3" stroke="currentColor" stroke-width="1.7"/><path d="M8 10V7a4 4 0 018 0v3" stroke="currentColor" stroke-width="1.7"/></svg>
           </div>
           <h3>Phishing website detection</h3>
-          <p>Links are checked against known and emerging phishing domains before the page ever loads, so a bad link gets blocked, not clicked.</p>
+          <p>Links are checked against known and emerging phishing domains before the page ever loads, so a bad link gets flagged, not clicked.</p>
         </div>
         <div class="feature-card">
           <div class="icon-wrap">
@@ -466,24 +353,29 @@
             <svg viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="6" rx="7" ry="3" stroke="currentColor" stroke-width="1.7"/><path d="M5 6v6c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6" stroke="currentColor" stroke-width="1.7"/></svg>
           </div>
           <h3>Centralized report database</h3>
-          <p>Every scam Cybersafe catches, text or website, lands in one searchable history, kept privately on your phone.</p>
+          <p>Every scam Cybersafe flags, text or website, lands in one searchable history, kept privately on your phone.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SCAM LOG PREVIEW (SIGNATURE ELEMENT) -->
-  <section class="logsection">
-    <div class="wrap log-grid">
-      <div class="log-copy">
-        <span class="eyebrow warn"><span class="dot"></span>Your scam log</span>
-        <h2>A running record, not a one-tap dismissal.</h2>
-        <p>Cybersafe keeps a private timeline of every reported text and blocked site, searchable later, on your device only.</p>
-        <div class="note">Preview below uses sample entries to show the layout of your Scam Log.</div>
+  <!-- TRENDING SCAMS -->
+  <section class="trending" id="trending">
+    <div class="wrap trending-grid">
+      <div class="trending-copy">
+        <span class="eyebrow warn"><span class="dot"></span>In the app</span>
+        <h2>Know what scams are trending right now.</h2>
+        <p>Cybersafe keeps a running feed of the scam patterns showing up most right now, texts and websites, so you can recognize one before it lands in your own inbox.</p>
+        <p>Updated automatically as new patterns get reported. No digging required.</p>
       </div>
-      <div class="log-panel">
-        <div class="log-panel-head"><span>Scam Log</span><span id="entryCount">0 entries</span></div>
-        <div class="log-list" id="logList"></div>
+      <div class="trending-media">
+        <div class="image-placeholder">
+          <img src="" alt="Trending scams feed in the Cybersafe app" onload="this.nextElementSibling.style.display='none'" onerror="this.style.display='none'">
+          <div class="placeholder-fallback">
+            <svg viewBox="0 0 24 24" fill="none"><rect x="4" y="3" width="16" height="18" rx="2.5" stroke="currentColor" stroke-width="1.6"/><path d="M9 20h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            <span>Add a screenshot of the Trending Scams feed here</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -542,8 +434,9 @@
       <div class="footer-fine">© 2026 Cybersafe. Pre-launch, iPhone only.</div>
     </div>
     <ul class="footer-links">
-      <li><a href="#basics">How it works</a></li>
+      <li><a href="phishing.html">How Phishing Works</a></li>
       <li><a href="#features">Features</a></li>
+      <li><a href="#trending">Trending Scams</a></li>
       <li><a href="#faq">FAQ</a></li>
       <li><a href="#waitlist">Waitlist</a></li>
     </ul>
@@ -551,51 +444,6 @@
 </footer>
 
 <script>
-  // ---------- Scam log preview ticker ----------
-  const sampleEntries = [
-    { type: 'text', title: 'Spoofed "USPS" delivery fee text', meta: 'Today · 9:41 AM' },
-    { type: 'web', title: 'Cloned login page: chase-secure-verify.com', meta: 'Today · 8:12 AM' },
-    { type: 'text', title: '"Bank alert" text with urgent link', meta: 'Yesterday · 6:03 PM' },
-    { type: 'web', title: 'Deepfake video on a fake support page', meta: 'Yesterday · 2:47 PM' },
-    { type: 'text', title: 'Fake gift card request from "coworker"', meta: '2 days ago · 11:15 AM' },
-    { type: 'web', title: 'Lookalike domain: paypa1-account.net', meta: '3 days ago · 4:30 PM' },
-    { type: 'text', title: '"Toll payment overdue" smishing text', meta: '4 days ago · 7:52 AM' },
-  ];
-
-  const iconText = '<svg viewBox="0 0 24 24" fill="none"><path d="M4 5h16v14H4z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M4 6l8 7 8-7" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>';
-  const iconWeb = '<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M3 12h18" stroke="currentColor" stroke-width="1.8"/></svg>';
-
-  const logList = document.getElementById('logList');
-  const entryCountEl = document.getElementById('entryCount');
-  let count = 0;
-  let idx = 0;
-  const MAX_VISIBLE = 5;
-
-  function addEntry() {
-    const data = sampleEntries[idx % sampleEntries.length];
-    idx++;
-    count++;
-
-    const el = document.createElement('div');
-    el.className = 'log-entry' + (data.type === 'web' ? ' web' : '');
-    el.innerHTML = `
-      <span class="icon-dot">${data.type === 'web' ? iconWeb : iconText}</span>
-      <div class="log-entry-body">
-        <div class="log-entry-title">${data.title}</div>
-        <div class="log-entry-meta">${data.type === 'web' ? 'Website' : 'Text'} · ${data.meta}</div>
-      </div>
-    `;
-    logList.prepend(el);
-    entryCountEl.textContent = count + (count === 1 ? ' entry' : ' entries');
-
-    while (logList.children.length > MAX_VISIBLE) {
-      logList.removeChild(logList.lastChild);
-    }
-  }
-
-  addEntry();
-  setInterval(addEntry, 2600);
-
   // ---------- Waitlist form ----------
   const form = document.getElementById('waitlistForm');
   const emailInput = document.getElementById('waitlistEmail');
