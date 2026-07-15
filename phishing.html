@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How Phishing Works | Cybersafe</title>
+<meta name="description" content="A plain-language guide to how text phishing and website or deepfake phishing actually work, from Cybersafe.">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap');
+
+  :root{
+    --bg:#F5F7F3;
+    --surface:#FFFFFF;
+    --surface-2:#ECF1EB;
+    --ink:#1E2A26;
+    --muted:#5C6B65;
+    --primary:#2B6F82;
+    --primary-dark:#1D4E5C;
+    --primary-soft:#DCEBEE;
+    --accent:#F2A65A;
+    --accent-dark:#D98A3B;
+    --accent-soft:#FBEAD6;
+    --alert:#E4634B;
+    --alert-soft:#FBE3DE;
+    --line:rgba(30,42,38,0.09);
+    --display:'Fraunces',Georgia,serif;
+    --body:'Inter',sans-serif;
+    --r-sm:12px;
+    --r-md:18px;
+    --r-lg:26px;
+    --r-pill:100px;
+    --shadow-soft:0 20px 44px -26px rgba(30,42,38,0.28);
+    --shadow-lift:0 26px 60px -24px rgba(30,42,38,0.32);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--body);
+    background:var(--bg);
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+    line-height:1.5;
+  }
+  img,svg{display:block;}
+  a{color:inherit;text-decoration:none;}
+  button{font-family:inherit;cursor:pointer;border:none;background:none;}
+  ul{list-style:none;}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 32px;}
+  section{position:relative;}
+  h1,h2,h3{font-family:var(--display);letter-spacing:-0.01em;line-height:1.1;font-weight:600;}
+  em{font-style:italic;color:var(--primary);}
+  :focus-visible{outline:2px solid var(--primary);outline-offset:3px;border-radius:4px;}
+
+  .eyebrow{
+    font-family:var(--body);
+    font-size:12.5px;
+    font-weight:600;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    color:var(--primary-dark);
+    background:var(--primary-soft);
+    padding:7px 14px 7px 11px;
+    border-radius:var(--r-pill);
+    margin-bottom:18px;
+  }
+  .eyebrow.warn{color:#A8412D;background:var(--alert-soft);}
+  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:currentColor;}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky;top:0;z-index:100;
+    background:rgba(245,247,243,0.82);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 32px;max-width:1140px;margin:0 auto;
+  }
+  .logo{
+    display:flex;align-items:center;gap:10px;
+    font-family:var(--display);font-weight:600;font-size:19px;letter-spacing:-0.01em;color:var(--ink);
+  }
+  .logo-badge{
+    width:34px;height:34px;border-radius:10px;background:var(--primary);
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  }
+  .logo-badge svg{width:18px;height:18px;}
+  .nav-links{display:none;align-items:center;gap:30px;}
+  @media(min-width:860px){.nav-links{display:flex;}}
+  .nav-links a{font-size:14.5px;font-weight:500;color:var(--muted);transition:color .2s;}
+  .nav-links a:hover{color:var(--ink);}
+  .btn{
+    font-family:var(--body);font-weight:600;font-size:14.5px;
+    padding:12px 24px;border-radius:var(--r-pill);
+    display:inline-flex;align-items:center;gap:8px;
+    transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+  }
+  .btn-primary{background:var(--primary);color:#fff;}
+  .btn-primary:hover{transform:translateY(-1px);box-shadow:0 14px 28px -10px rgba(43,111,130,0.45);background:var(--primary-dark);}
+  .btn-accent{background:var(--accent);color:#3B2408;}
+  .btn-accent:hover{background:var(--accent-dark);transform:translateY(-1px);box-shadow:0 14px 28px -10px rgba(217,138,59,0.5);}
+  .nav-cta{display:none;}
+  @media(min-width:720px){.nav-cta{display:inline-flex;}}
+  .back-link{display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:600;color:var(--muted);margin-bottom:24px;}
+  .back-link:hover{color:var(--primary-dark);}
+
+  /* ---------- WHAT IS PHISHING ---------- */
+  .basics{padding:64px 0 40px;}
+  .basics-top{max-width:640px;margin-bottom:56px;}
+  .basics-top h1{font-size:clamp(30px,4.2vw,44px);margin-bottom:18px;}
+  .basics-top p{font-size:16.5px;line-height:1.75;color:var(--muted);}
+  .basics-cards{display:grid;grid-template-columns:1fr;gap:22px;}
+  @media(min-width:760px){.basics-cards{grid-template-columns:1fr 1fr;}}
+  .basic-card{
+    background:var(--surface);border-radius:var(--r-lg);padding:32px;box-shadow:var(--shadow-soft);
+  }
+  .basic-card .icon-wrap{
+    width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;
+    background:var(--alert-soft);margin-bottom:20px;
+  }
+  .basic-card .icon-wrap svg{width:23px;height:23px;color:var(--alert);}
+  .basic-card h3{font-size:20px;margin-bottom:11px;}
+  .basic-card p{font-size:14.5px;line-height:1.7;color:var(--muted);}
+  .basic-card .tag{
+    display:inline-block;margin-top:18px;font-size:12px;font-weight:600;
+    color:var(--muted);border:1px solid var(--line);padding:5px 12px;border-radius:var(--r-pill);
+  }
+
+  /* ---------- SEQUENCE (how it works) ---------- */
+  .sequence-section{padding:70px 0;}
+  .sequence-head{display:flex;flex-direction:column;gap:8px;margin-bottom:44px;max-width:600px;}
+  .sequence-head h2{font-size:24px;}
+  .sequence-head p{color:var(--muted);font-size:14.5px;line-height:1.65;}
+  .sequence{display:grid;grid-template-columns:1fr;gap:28px;position:relative;}
+  @media(min-width:820px){
+    .sequence{grid-template-columns:repeat(4,1fr);gap:24px;}
+    .sequence::before{
+      content:"";position:absolute;top:22px;left:8%;right:8%;height:1.5px;
+      background:repeating-linear-gradient(90deg, var(--line) 0 8px, transparent 8px 14px);
+    }
+  }
+  .seq-step{position:relative;}
+  .seq-badge{
+    width:44px;height:44px;border-radius:50%;background:var(--surface);border:1.5px solid var(--line);
+    display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:600;
+    font-size:16px;color:var(--primary-dark);margin-bottom:16px;position:relative;z-index:1;box-shadow:var(--shadow-soft);
+  }
+  .seq-step h4{font-family:var(--display);font-size:16.5px;margin-bottom:8px;font-weight:600;}
+  .seq-step p{font-size:13.5px;line-height:1.65;color:var(--muted);}
+
+  /* ---------- CTA BAND ---------- */
+  .waitlist{padding:100px 0;background:var(--primary);color:#fff;position:relative;overflow:hidden;}
+  .waitlist .blob{position:absolute;border-radius:50%;filter:blur(70px);opacity:0.35;}
+  .waitlist .blob-a{width:380px;height:380px;background:var(--accent);top:-160px;left:-100px;}
+  .waitlist .blob-b{width:320px;height:320px;background:#ffffff;bottom:-160px;right:-80px;}
+  .waitlist-box{max-width:520px;margin:0 auto;text-align:center;position:relative;z-index:1;}
+  .waitlist-box .eyebrow{background:rgba(255,255,255,0.14);color:#fff;}
+  .waitlist-box h2{font-size:clamp(26px,3.6vw,36px);margin-bottom:14px;color:#fff;}
+  .waitlist-box p{color:rgba(255,255,255,0.82);font-size:16px;line-height:1.65;margin-bottom:30px;}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--surface-2);padding:48px 0;}
+  .footer-inner{display:flex;flex-direction:column;gap:20px;justify-content:space-between;align-items:flex-start;}
+  @media(min-width:700px){.footer-inner{flex-direction:row;align-items:center;}}
+  .footer-links{display:flex;gap:24px;font-size:13.5px;color:var(--muted);}
+  .footer-links a:hover{color:var(--ink);}
+  .footer-fine{font-size:12.5px;margin-top:10px;color:var(--muted);}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important;transition:none !important;scroll-behavior:auto !important;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="index.html" class="logo">
+      <span class="logo-badge">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 2L4 5v6c0 5.2 3.4 9.7 8 11 4.6-1.3 8-5.8 8-11V5l-8-3z" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      Cybersafe
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#features">Features</a></li>
+      <li><a href="index.html#trending">Trending Scams</a></li>
+      <li><a href="index.html#faq">FAQ</a></li>
+    </ul>
+    <a href="index.html#waitlist" class="btn btn-primary nav-cta">Join the Waitlist</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- WHAT IS PHISHING -->
+  <section class="basics" id="basics">
+    <div class="wrap">
+      <a href="index.html" class="back-link">← Back to Cybersafe</a>
+      <div class="basics-top">
+        <span class="eyebrow warn"><span class="dot"></span>The basics</span>
+        <h1>Phishing is a con, not a hack.</h1>
+        <p>Phishing isn't about breaking through your phone's security. It's about catching you in a busy moment. A message that looks like it's from your bank, a delivery service, or a coworker, arriving right when you're distracted, is often all it takes. It works because of timing and trust, not because you weren't careful enough.</p>
+      </div>
+
+      <div class="basics-cards">
+        <div class="basic-card">
+          <div class="icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M4 5h16v14H4z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M4 6l8 7 8-7" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Text phishing (smishing)</h3>
+          <p>A text arrives that looks like it's from a delivery company, your bank, or even a family member, usually while you're mid-scroll, driving, or in the middle of something else. It creates urgency and pushes you toward a link that leads to a fake page built to collect your information.</p>
+          <span class="tag">SMS · iMessage</span>
+        </div>
+        <div class="basic-card">
+          <div class="icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18" stroke="currentColor" stroke-width="1.7"/></svg>
+          </div>
+          <h3>Website & deepfake phishing</h3>
+          <p>A cloned website can look identical to your bank's real login page. Increasingly, attackers go further with a deepfake video embedded on the fake site, a synthetic "support agent" built to earn your trust in the few seconds you have to decide.</p>
+          <span class="tag">Web · Video</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEQUENCE: TEXT -->
+  <section class="sequence-section">
+    <div class="wrap">
+      <div class="sequence-head">
+        <h2>How a phishing text plays out</h2>
+        <p>The same four moves show up in almost every smishing attempt. Cybersafe is built to flag it at step three, before you act on it.</p>
+      </div>
+      <div class="sequence">
+        <div class="seq-step">
+          <div class="seq-badge">01</div>
+          <h4>The message</h4>
+          <p>A spoofed message arrives, faked to look like a delivery service, bank, or contact you recognize.</p>
+        </div>
+        <div class="seq-step">
+          <div class="seq-badge">02</div>
+          <h4>The pressure</h4>
+          <p>Urgent language, like "act now," "account locked," or "package held," designed to make you act fast, before you've had a moment to think it through.</p>
+        </div>
+        <div class="seq-step">
+          <div class="seq-badge">03</div>
+          <h4>The link</h4>
+          <p>A link leads to a page built to look like the real thing, often live for only a few hours.</p>
+        </div>
+        <div class="seq-step">
+          <div class="seq-badge">04</div>
+          <h4>The result</h4>
+          <p>Login details, card numbers, or personal data entered on the fake page go straight to the attacker.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEQUENCE: WEBSITE / DEEPFAKE -->
+  <section class="sequence-section">
+    <div class="wrap">
+      <div class="sequence-head">
+        <h2>How a phishing website or deepfake plays out</h2>
+        <p>Website and deepfake phishing follow a similar arc, but lean on visual and vocal trust instead of just text.</p>
+      </div>
+      <div class="sequence">
+        <div class="seq-step">
+          <div class="seq-badge">01</div>
+          <h4>The setup</h4>
+          <p>A cloned login page, or a deepfake video on a fake site made to look and sound like someone real.</p>
+        </div>
+        <div class="seq-step">
+          <div class="seq-badge">02</div>
+          <h4>The approach</h4>
+          <p>You're directed there through a text link, a search ad, or a social media message.</p>
+        </div>
+        <div class="seq-step">
+          <div class="seq-badge">03</div>
+          <h4>The mask</h4>
+          <p>Familiar branding, a real logo, or a deepfake video that matches someone you already trust.</p>
+        </div>
+        <div class="seq-step">
+          <div class="seq-badge">04</div>
+          <h4>The ask</h4>
+          <p>A form, a "verification" code, or a payment request. This is the real goal behind the disguise.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="waitlist" id="waitlist">
+    <div class="blob blob-a"></div>
+    <div class="blob blob-b"></div>
+    <div class="wrap waitlist-box">
+      <span class="eyebrow"><span class="dot"></span>Coming to iPhone</span>
+      <h2>Now that you know the pattern, let Cybersafe watch for it.</h2>
+      <p>Join the waitlist for early access when Cybersafe launches.</p>
+      <a href="index.html#waitlist" class="btn btn-accent">Join the Waitlist</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <div>
+      <a href="index.html" class="logo">
+        <span class="logo-badge">
+          <svg viewBox="0 0 24 24" fill="none" width="16" height="16"><path d="M12 2L4 5v6c0 5.2 3.4 9.7 8 11 4.6-1.3 8-5.8 8-11V5l-8-3z" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        Cybersafe
+      </a>
+      <div class="footer-fine">© 2026 Cybersafe. Pre-launch, iPhone only.</div>
+    </div>
+    <ul class="footer-links">
+      <li><a href="index.html#features">Features</a></li>
+      <li><a href="index.html#trending">Trending Scams</a></li>
+      <li><a href="index.html#faq">FAQ</a></li>
+      <li><a href="index.html#waitlist">Waitlist</a></li>
+    </ul>
+  </div>
+</footer>
+
+</body>
+</html>
